@@ -64,21 +64,28 @@ public class UserServieImpl implements UserService {
                 if (user.getUserpwd().equals(pwssword)) {
                     //判断用户是否激活或者为管理员
                     if (user.getStauts().equals(1) || user.getStauts().equals(2)) {
-                        receipt.setCode(10001);
-                        //将用户信息存入session
-                        HttpSession session = request.getSession();
-                        System.out.println("用户："+user.getUname()+"已登陆");
-                        session.setAttribute("user", user);
+                        if (request.getSession().getAttribute("user")==null){
+                            receipt.setCode(10001);
+                            //将用户信息存入session
+                            HttpSession session = request.getSession();
+                            System.out.println("用户："+user.getUname()+"已登陆");
+                            //更改该用户状态为在线
+                            updateleftstuatslogin(user.getUid());
+                            session.setAttribute("user", user);
+                        }else {
+                            receipt.setCode(10002);
+                            receipt.setMsg("当前电脑已存在用户登陆，每台电脑只可登陆一名用户");
+                        }
                     } else {
-                        receipt.setCode(10002);
+                        receipt.setCode(10003);
                         receipt.setMsg("用户未激活，请联系客服激活账号");
                     }
                 } else {
-                    receipt.setCode(10003);
+                    receipt.setCode(10004);
                     receipt.setMsg("密码错误，请重新登陆");
                 }
             } else {
-                receipt.setCode(10004);
+                receipt.setCode(10005);
                 receipt.setMsg("用户名不存在，请重新登陆");
             }
         return receipt;
@@ -106,6 +113,33 @@ public class UserServieImpl implements UserService {
         //初始化状态
         user.setLeftstauts(0);
         userMapper.insert(user);
+    }
+
+    /**
+     * 热门文章列表
+     * @return
+     */
+    @Override
+    public List<User> selectHosts() {
+        return userMapper.selecthosts();
+    }
+
+    /**
+     * 更改用户状态为在线
+     * @param uid
+     */
+    @Override
+    public void updateleftstuatslogin(Integer uid) {
+        userMapper.updateleftstuatslogin(uid);
+    }
+
+    /**
+     * 更改用户状态为离线
+     * @param uid
+     */
+    @Override
+    public void updateleftstuatsloginout(Integer uid) {
+        userMapper.updateleftstuatsloginout(uid);
     }
 
 }

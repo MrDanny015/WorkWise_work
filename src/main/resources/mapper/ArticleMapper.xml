@@ -274,6 +274,24 @@
     </if>
   </select>
 
+  <select id="selecthostArticle" resultMap="BaseResultMap">
+SELECT
+	a.aid,
+	a.title,
+	a.context,
+	a.uid,
+	a.Pageviews,
+	u.uname
+FROM
+	c_article a
+	LEFT JOIN c_comment c ON a.aid = c.aid
+	LEFT JOIN c_user u ON a.uid = u.uid
+GROUP BY
+	a.aid
+ORDER BY
+	a.Pageviews DESC
+	LIMIT 5
+  </select>
   <update id="uodPageviews">
     UPDATE c_article a SET a.Pageviews =  a.Pageviews +1 WHERE a.aid  = #{aid}
   </update>

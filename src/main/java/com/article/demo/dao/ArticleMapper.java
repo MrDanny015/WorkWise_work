@@ -97,4 +97,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
     void uodPageviews(Integer aid);
+
+    List<Article> selecthostArticle();
 }

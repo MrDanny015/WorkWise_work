@@ -10,6 +10,7 @@ import java.util.List;
 public class Article implements Serializable {
 
 
+    private Integer comcount;
     private List<Comment> ctexts;
     private String cids;
     private String uname;
@@ -17,6 +18,13 @@ public class Article implements Serializable {
     private String sitename;
     private String typename;
 
+    public Integer getComcount() {
+        return comcount;
+    }
+
+    public void setComcount(Integer comcount) {
+        this.comcount = comcount;
+    }
 
     public String getTypename() {
         return typename;

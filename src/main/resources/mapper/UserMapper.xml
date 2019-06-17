@@ -115,6 +115,27 @@
       order by ${orderByClause}
     </if>
   </select>
+
+
+  <select id="selecthosts" resultMap="BaseResultMap">
+    SELECT
+	u.uid,
+	u.uname,
+	u.brithday,
+	u.username,
+	u.userpwd,
+	u.stauts,
+	u.fans,
+	u.attention,
+	u.signature,
+	u.leftstauts,
+	u.viewcount
+FROM
+	c_user u
+ORDER BY u.fans DESC
+LIMIT 6
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
       WARNING - @mbg.generated
@@ -378,4 +399,12 @@
       leftstauts = #{leftstauts,jdbcType=INTEGER}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+
+  <update id="updateleftstuatslogin"  parameterType="java.lang.Integer">
+    UPDATE c_user u SET u.leftstauts = 1 WHERE u.uid  =  #{uid}
+  </update>
+  <update id="updateleftstuatsloginout" parameterType="java.lang.Integer">
+    UPDATE c_user u SET u.leftstauts = 0 WHERE u.uid  =  #{uid}
+  </update>
+
 </mapper>

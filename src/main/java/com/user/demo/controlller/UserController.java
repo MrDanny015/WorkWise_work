@@ -35,8 +35,11 @@ public class UserController {
     @ResponseBody
     public void loginout(){
         User user = (User) request.getSession().getAttribute("user");
+        //更改该用户状态为离线
+        userService.updateleftstuatsloginout(user.getUid());
         System.out.println("用户："+user.getUname()+"已注销");
         request.getSession().invalidate();
+
     }
 
     /**

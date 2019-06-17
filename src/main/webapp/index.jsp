@@ -11,6 +11,7 @@
     <meta name="keywords" content=""/>
     <link rel="stylesheet" type="text/css" href="css/animate.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap-select/2.0.0-beta1/css/bootstrap-select.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/line-awesome.css">
     <link rel="stylesheet" type="text/css" href="css/line-awesome-font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -19,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    
 </head>
 
 
@@ -263,57 +264,16 @@
                                         <i class="la la-ellipsis-v"></i>
                                     </div><!--sd-title end-->
                                     <div class="suggestions-list">
+                                        <c:forEach items="${userhost}" var="uht">
                                         <div class="suggestion-usd">
                                             <img src="images/resources/s1.png" alt="">
                                             <div class="sgt-text">
-                                                <h4>杰西卡·威廉姆斯</h4>
-                                                <span>平面设计师</span>
+                                                <h4>${uht.uname}</h4>
+                                                <span>${uht.signature}</span>
                                             </div>
                                             <span><i class="la la-plus"></i></span>
                                         </div>
-                                        <div class="suggestion-usd">
-                                            <img src="images/resources/s2.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>丹尼</h4>
-                                                <span>PHP开发者</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="images/resources/s3.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>阿莫尔</h4>
-                                                <span>开发者网站</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="images/resources/s4.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>比尔·盖茨</h4>
-                                                <span>C & C++ 开发</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="images/resources/s5.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>杰西卡·威廉姆斯</h4>
-                                                <span>平面设计师</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="suggestion-usd">
-                                            <img src="images/resources/s6.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>丹尼</h4>
-                                                <span>PHP 开发者</span>
-                                            </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
-                                        <div class="view-more">
-                                            <a href="#" title="">查看更多</a>
-                                        </div>
+                                        </c:forEach>
                                     </div><!--suggestions-list end-->
                                 </div><!--suggestions end-->
                                 <div class="tags-sec full-width">
@@ -445,6 +405,7 @@
                                                     <li><a href="#" title="">查看作者</a></li>
                                                     <li><a href="#" title="">邀约</a></li>
                                                     <li><a href="#" title="">关闭</a></li>
+                                                    <c:if test="${sessionScope.user.uid==artc.uid}" ><li><a  href="javascript:deletearite(${artc.aid})" title="">删除</a></li></c:if>
                                                 </ul>
                                             </div>
                                         </div>
@@ -464,7 +425,7 @@
                                                 <li><a href="#" title="">${artc.typename}</a></li>
                                                 <li><span></span></li>
                                             </ul>
-                                            <p>${artc.context}<a href="#" title="">查看更多</a></p>
+                                            <p >${artc.context}<a href="#" title="">查看更多</a></p>
                                         </div>
                                         <div class="job-status-bar">
                                             <ul class="like-com">
@@ -473,7 +434,7 @@
                                                     <img src="images/liked-img.png" alt="">
                                                     <span>${artc.praise}</span>
                                                 </li>
-                                                <li><a href="#" title="" class="com"><img src="images/com.png" alt=""> 15条评论</a></li>
+                                                <li><a href="#" title="" class="com"><img src="images/com.png" alt=""> ${artc.comcount}条评论</a></li>
                                             </ul>
                                             <a><i class="la la-eye"></i> 热度：${artc.pageviews}</a>
                                         </div>
@@ -490,6 +451,7 @@
                                                                 <span><img src="images/clock.png"
                                                                            alt="">${artcontext.commenttime}</span>
                                                                 <p>${artcontext.text}</p>
+                                                                <c:if test="${sessionScope.user.uid==artcontext.uid}" ><a href="javascript:deletecomment(${artcontext.cid})" title="">删除</a></c:if>
                                                             </div>
                                                         </div><!--comment-list end-->
                                                     </li>
@@ -536,50 +498,15 @@
                                     </div>
                                     <div class="jobs-list">
                                         <div class="job-info">
-                                            <div class="job-details">
-                                                <h3>高级产品设计师</h3>
-                                                <p>Lorem存有悲坐阿梅德，consectetur adipiscing ELIT ..</p>
+                                            <c:forEach items="${articleshost}" var="ahost">
+                                            <div class="job-details" style=" margin-bottom: 15px;">
+                                                <a href=""><h3 style="width: 180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">${ahost.title}</h3></a>
+                                                <p style="width: 180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">${ahost.context}</p>
                                             </div>
-                                            <div class="hr-rate">
-                                                <span>$25/hr</span>
-                                            </div>
-                                        </div><!--job-info end-->
-                                        <div class="job-info">
-                                            <div class="job-details">
-                                                <h3>高级UI / UX设计</h3>
-                                                <p>Lorem存有悲坐阿梅德，consectetur adipiscing ELIT ..</p>
-                                            </div>
-                                            <div class="hr-rate">
-                                                <span>$25/hr</span>
-                                            </div>
-                                        </div><!--job-info end-->
-                                        <div class="job-info">
-                                            <div class="job-details">
-                                                <h3>小型搜索引擎优化设计</h3>
-                                                <p>Lorem存有悲坐阿梅德，consectetur adipiscing ELIT ..</p>
-                                            </div>
-                                            <div class="hr-rate">
-                                                <span>$25/hr</span>
-                                            </div>
-                                        </div><!--job-info end-->
-                                        <div class="job-info">
-                                            <div class="job-details">
-                                                <h3>高级开发人员设计师</h3>
-                                                <p>Lorem存有悲坐阿梅德，consectetur adipiscing ELIT ..</p>
-                                            </div>
-                                            <div class="hr-rate">
-                                                <span>$25/hr</span>
-                                            </div>
-                                        </div><!--job-info end-->
-                                        <div class="job-info">
-                                            <div class="job-details">
-                                                <h3>高级开发人员设计师</h3>
-                                                <p>Lorem存有悲坐阿梅德，consectetur adipiscing ELIT ..</p>
-                                            </div>
-                                            <div class="hr-rate">
-                                                <span>$25/hr</span>
-                                            </div>
-                                        </div><!--job-info end-->
+                                            
+                                            </c:forEach>
+                                        </div><!--articlehost-info end-->
+                                        
                                     </div><!--jobs-list end-->
                                 </div><!--widget-jobs end-->
                                 <div class="widget widget-jobs">
@@ -687,46 +614,36 @@
 
     <div class="post-popup pst-pj">
         <div class="post-project">
-            <h3>Post a project</h3>
+            <h3>新动态</h3>
             <div class="post-project-fields">
-                <form>
-                    <div class="row">
+                <form id="article-tab">
+                    <div class="row"> 
+                    	<input type="text" hidden="hidden" name="uid" value="${sessionScope.user.uid}">
                         <div class="col-lg-12">
-                            <input type="text" name="title" placeholder="Title">
+                            <input type="text" name="title" placeholder="标题">
                         </div>
                         <div class="col-lg-12">
                             <div class="inp-field">
-                                <select>
-                                    <option>Category</option>
-                                    <option>Category 1</option>
-                                    <option>Category 2</option>
-                                    <option>Category 3</option>
+                                <select class="selectpicker show-tick form-control type_kind"  name="tid">
+                                   
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <input type="text" name="skills" placeholder="Skills">
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="price-sec">
-                                <div class="price-br">
-                                    <input type="text" name="price1" placeholder="Price">
-                                    <i class="la la-dollar"></i>
-                                </div>
-                                <span>To</span>
-                                <div class="price-br">
-                                    <input type="text" name="price1" placeholder="Price">
-                                    <i class="la la-dollar"></i>
-                                </div>
+                            <div class="inp-field">
+                                <select class="selectpicker show-tick form-control site_kind"  name="sid">
+                                 
+                                </select>
                             </div>
                         </div>
+                        
                         <div class="col-lg-12">
-                            <textarea name="description" placeholder="Description"></textarea>
+                            <textarea name="context" placeholder="请输入您的内容"></textarea>
                         </div>
                         <div class="col-lg-12">
                             <ul>
                                 <li>
-                                    <button class="active" type="submit" value="post">Post</button>
+                                    <a href="javascript:submit_article()"><button class="active" type="button" value="发布">发布</button></a>
                                 </li>
                                 <li><a href="#" title="">Cancel</a></li>
                             </ul>
@@ -947,10 +864,11 @@
 
 </div><!--theme-layout end-->
 
+<script type="text/javascript" src="js/popper.js"></script>
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/popper.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>
