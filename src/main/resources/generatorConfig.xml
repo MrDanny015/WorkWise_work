@@ -52,10 +52,10 @@
         </javaClientGenerator>
 
 
-        <table schema="" tableName="c_type" domainObjectName="C_Type"/>
-        <table schema="" tableName="c_site" domainObjectName="C_Site"/>
-        <table schema="" tableName="c_article" domainObjectName="Article"/>
-        <table schema="" tableName="c_comment" domainObjectName="Comment"/>
+        <table schema="" tableName="c_record" domainObjectName="C_Record"/>
+<!--        <table schema="" tableName="c_site" domainObjectName="C_Site"/>-->
+<!--        <table schema="" tableName="c_article" domainObjectName="Article"/>-->
+<!--        <table schema="" tableName="c_comment" domainObjectName="Comment"/>-->
 <!--        <table schema="" tableName="c_user" domainObjectName="User"/>-->
 
     </context>

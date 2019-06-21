@@ -1,3 +1,4 @@
+//页面触发时加载
 $(window).on('load',function doc() {
     
     type_list();
@@ -66,8 +67,6 @@ function type_list(){
 
             });
 
-            
-
             },
             error: function (data) {
                 alert("查询地址信息失败" + data);
@@ -133,6 +132,7 @@ function deletecomment(cid){
         })
 
 }
+
 //删除我的文章
 function deletearite(aid){
 
@@ -152,5 +152,47 @@ function deletearite(aid){
                 alert("系统错误，删除操作失败");
             }
         })
+}
 
+
+//点赞
+function likeed(aid){
+
+    $.ajax({
+            url: "/likeed",//写你自己的方法，返回map，我返回的map包含了两个属性：data：集合，total：集合记录数量，所以后边会有data.data的写法。。。
+            // 数据发送方式
+            type: "post",
+            // 接受数据格式
+            dataType: "json",
+            // 要传递的数据
+            data: {aid:aid},
+            // 回调函数，接受服务器端返回给客户端的值，即result值
+            success: function (data) {
+                location.reload();
+            },
+            error: function (data) {
+                alert("系统错误，点赞操作失败");
+            }
+        })
+}
+
+//取消赞
+function likeout(aid){
+
+    $.ajax({
+            url: "/likeout",//写你自己的方法，返回map，我返回的map包含了两个属性：data：集合，total：集合记录数量，所以后边会有data.data的写法。。。
+            // 数据发送方式
+            type: "post",
+            // 接受数据格式
+            dataType: "json",
+            // 要传递的数据
+            data: {aid:aid},
+            // 回调函数，接受服务器端返回给客户端的值，即result值
+            success: function (data) {
+                location.reload();
+            },
+            error: function (data) {
+                alert("系统错误，取消点赞操作失败");
+            }
+        })
 }

@@ -35,7 +35,7 @@ public class VerifyCode{
     // 定义有那些验证码的随机字符
     private String codes = "23456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ";
     // 生成背景色
-    private Color bgColor = new Color(250, 250, 250);
+    private Color bgColor = new Color(214, 219, 215);
     // 用于gettext 方法 获得生成的验证码文本
     private String text;
 

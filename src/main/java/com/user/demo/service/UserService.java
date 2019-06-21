@@ -9,8 +9,10 @@ import java.util.List;
  * @author 丹尼 用户模块 业务接口
  */
 public interface UserService {
-    /**+
+    /**
+     *
      * 登陆 用户名判断
+     *
      * @param username
      * @return
      */
@@ -18,6 +20,7 @@ public interface UserService {
 
     /**
      * 登陆
+     *
      * @param username
      * @param userpwd
      * @param
@@ -27,6 +30,7 @@ public interface UserService {
 
     /**
      * 注册 添加用户
+     *
      * @param user
      * @throws Exception
      */
@@ -34,6 +38,7 @@ public interface UserService {
 
     /**
      * 人气榜查询
+     *
      * @return
      */
     List<User> selectHosts();
@@ -41,11 +46,11 @@ public interface UserService {
     /**
      * 用户在线状态更改
      */
-    void updateleftstuatslogin(Integer uid);
+    void updateleftstuatslogin(String uid);
 
     /**
      * 用户离线状态更改
      */
-    void updateleftstuatsloginout(Integer uid);
+    void updateleftstuatsloginout(String uid);
 
 }

@@ -1291,11 +1291,10 @@ main {
 	top: 2px;
 }
 .like-com li span {
-	color: #ffffff;
+	color: #4678ff;
 	font-size: 13px;
 	width: 30px;
 	height: 30px;
-	background-color: #e44d3a;
 	line-height: 30px;
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
@@ -1305,7 +1304,9 @@ main {
 	float: left;
 	text-align: center;
 	font-weight: 600;
-	margin-left: -25px;
+
+	margin-left: 0px;
+
 }
 .like-com li .com {
 	position: relative;

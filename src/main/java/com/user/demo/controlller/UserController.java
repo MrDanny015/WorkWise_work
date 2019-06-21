@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,11 +34,11 @@ public class UserController {
      */
     @RequestMapping("loginout")
     @ResponseBody
-    public void loginout(){
+    public void loginout() {
         User user = (User) request.getSession().getAttribute("user");
         //更改该用户状态为离线
         userService.updateleftstuatsloginout(user.getUid());
-        System.out.println("用户："+user.getUname()+"已注销");
+        System.out.println("用户：" + user.getUname() + "已注销");
         request.getSession().invalidate();
 
     }
@@ -83,7 +84,7 @@ public class UserController {
         System.out.println(user);
         //实例化回执对象
         Receipt receipt = new Receipt();
-        if (user.getUsername()!=null && user.getUserpwd()!=null ){
+        if (user.getUsername() != null && user.getUserpwd() != null) {
             try {
                 userService.registered(user);
                 receipt.setFlag(true);
@@ -92,10 +93,9 @@ public class UserController {
                 receipt.setFlag(false);
                 receipt.setMsg("注册失败，请重新输入");
             }
-        }else {
+        } else {
             receipt.setMsg("用户名或密码不能为空，请重新输入");
         }
-
         return receipt;
     }
 
@@ -115,6 +115,5 @@ public class UserController {
             return false;
         }
     }
-
 
 }

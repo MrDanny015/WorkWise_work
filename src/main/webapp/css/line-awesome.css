@@ -497,6 +497,7 @@
 .la-header:before { content: "\f231"; }
 .la-headphones:before { content: "\f232"; }
 .la-heart:before { content: "\f233"; }
+.la-hearted:before { content: "\e44d3a"; }
 .la-heart-o:before { content: "\f234"; }
 .la-heartbeat:before { content: "\f235"; }
 .la-history:before { content: "\f236"; }

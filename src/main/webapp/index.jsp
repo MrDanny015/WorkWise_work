@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/responsive.css">
-    
+
 </head>
 
 
@@ -194,7 +194,9 @@
                         <ul class="on-off-status">
                             <li>
                                 <div class="fgt-sec">
-                                    <input type="radio" <c:if test="${ sessionScope.user.leftstauts==1 }">checked="checked"</c:if> name="leftstauts" id="c5">
+                                    <input type="radio"
+                                           <c:if test="${ sessionScope.user.leftstauts==1 }">checked="checked"</c:if>
+                                           name="leftstauts" id="c5">
                                     <label for="c5">
                                         <span></span>
                                     </label>
@@ -203,7 +205,9 @@
                             </li>
                             <li>
                                 <div class="fgt-sec">
-                                    <input type="radio" <c:if test="${ sessionScope.user.leftstauts==0 }" >checked="checked"</c:if> name="leftstauts" id="c6">
+                                    <input type="radio"
+                                           <c:if test="${ sessionScope.user.leftstauts==0 }">checked="checked"</c:if>
+                                           name="leftstauts" id="c6">
                                     <label for="c6">
                                         <span></span>
                                     </label>
@@ -265,14 +269,14 @@
                                     </div><!--sd-title end-->
                                     <div class="suggestions-list">
                                         <c:forEach items="${userhost}" var="uht">
-                                        <div class="suggestion-usd">
-                                            <img src="images/resources/s1.png" alt="">
-                                            <div class="sgt-text">
-                                                <h4>${uht.uname}</h4>
-                                                <span>${uht.signature}</span>
+                                            <div class="suggestion-usd">
+                                                <img src="images/resources/s1.png" alt="">
+                                                <div class="sgt-text">
+                                                    <h4>${uht.uname}</h4>
+                                                    <span>${uht.signature}</span>
+                                                </div>
+                                                <span><i class="la la-plus"></i></span>
                                             </div>
-                                            <span><i class="la la-plus"></i></span>
-                                        </div>
                                         </c:forEach>
                                     </div><!--suggestions-list end-->
                                 </div><!--suggestions end-->
@@ -388,73 +392,102 @@
                                     </div><!--profiles-slider end-->
                                 </div><!--top-profiles end-->
                                 <div class="posts-section">
-                                <c:forEach items="${ArticleList}" var="artc">
-                                    <div class="post_topbar" style="background-color: #fff;margin-bottom: 26px; " >
-                                        <div class="post-bar">
-                                            <div class="usy-dt">
-                                            <img src="images/resources/us-pic.png" alt="">
-                                            <div class="usy-name">
-                                                <h3>${artc.uname}</h3>
-                                                <span ><img src="images/clock.png" alt="">${artc.creattime}</span>
+                                    <c:forEach items="${ArticleList}" var="artc">
+                                    
+                                        <div class="post_topbar" style="background-color: #fff;margin-bottom: 26px; ">
+                                            <div class="post-bar">
+                                                <div class="usy-dt">
+                                                    <img src="images/resources/us-pic.png" alt="">
+                                                    <div class="usy-name">
+                                                        <h3>${artc.uname}</h3>
+                                                        <span><img src="images/clock.png"
+                                                                   alt="">${artc.creattime}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="ed-opts">
+                                                    <a href="#" title="" class="ed-opts-open"><i
+                                                            class="la la-ellipsis-v"></i></a>
+                                                    <ul class="ed-options">
+                                                        <li><a href="#" title="">编辑帖子</a></li>
+                                                        <li><a href="#" title="">查看作者</a></li>
+                                                        <li><a href="#" title="">邀约</a></li>
+                                                        <li><a href="#" title="">关闭</a></li>
+                                                        <c:if test="${sessionScope.user.uid==artc.uid}">
+                                                            <li><a href="javascript:deletearite('${artc.aid}')" title="">删除</a>
+                                                            </li>
+                                                        </c:if>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                            <div class="ed-opts">
-                                                <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                <ul class="ed-options">
-                                                    <li><a href="#" title="">编辑帖子</a></li>
-                                                    <li><a href="#" title="">查看作者</a></li>
-                                                    <li><a href="#" title="">邀约</a></li>
-                                                    <li><a href="#" title="">关闭</a></li>
-                                                    <c:if test="${sessionScope.user.uid==artc.uid}" ><li><a  href="javascript:deletearite(${artc.aid})" title="">删除</a></li></c:if>
+                                            <div class="epi-sec">
+                                                <ul class="descp">
+                                                    <li><img src="images/icon8.png"
+                                                             alt=""><span>${artc.signature}</span></li>
+                                                    <li><img src="images/icon9.png" alt=""><span>${artc.sitename}</span>
+                                                    </li>
+                                                </ul>
+                                                <ul class="bk-links">
+                                                    <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                                                    <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
                                                 </ul>
                                             </div>
-                                        </div>
-                                        <div class="epi-sec">
-                                            <ul class="descp">
-                                                <li><img src="images/icon8.png" alt=""><span>${artc.signature}</span></li>
-                                                <li><img src="images/icon9.png" alt=""><span>${artc.sitename}</span></li>
-                                            </ul>
-                                            <ul class="bk-links">
-                                                <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-                                                <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="job_descp">
-                                            <h3>${artc.title}</h3>
-                                            <ul class="job-dt">
-                                                <li><a href="#" title="">${artc.typename}</a></li>
-                                                <li><span></span></li>
-                                            </ul>
-                                            <p >${artc.context}<a href="#" title="">查看更多</a></p>
-                                        </div>
-                                        <div class="job-status-bar">
-                                            <ul class="like-com">
-                                                <li>
-                                                    <a href="#"><i class="la la-heart"></i> 赞</a>
-                                                    <img src="images/liked-img.png" alt="">
-                                                    <span>${artc.praise}</span>
-                                                </li>
-                                                <li><a href="#" title="" class="com"><img src="images/com.png" alt=""> ${artc.comcount}条评论</a></li>
-                                            </ul>
-                                            <a><i class="la la-eye"></i> 热度：${artc.pageviews}</a>
-                                        </div>
-                                        	<div class="comment-sec">
-                                                <ul>
-                                                	<c:forEach items="${artc.ctexts}" var="artcontext">
-                                                    <li>
-                                                        <div class="comment-list">
-                                                            <div class="bg-img">
-                                                                <img src="images/resources/bg-img3.png" alt="">
-                                                            </div>
-                                                            <div class="comment">
-                                                                <h3>${artcontext.uname}</h3>
-                                                                <span><img src="images/clock.png"
-                                                                           alt="">${artcontext.commenttime}</span>
-                                                                <p>${artcontext.text}</p>
-                                                                <c:if test="${sessionScope.user.uid==artcontext.uid}" ><a href="javascript:deletecomment(${artcontext.cid})" title="">删除</a></c:if>
-                                                            </div>
-                                                        </div><!--comment-list end-->
+                                            <div class="job_descp">
+                                                <h3>${artc.title}</h3>
+                                                <ul class="job-dt">
+                                                    <li><a href="#" title="">${artc.typename}</a></li>
+                                                    <li><span></span></li>
+                                                </ul>
+                                                <p>${artc.context}<a href="#" title="">查看更多</a></p>
+                                            </div>
+                                            <div class="job-status-bar">
+                                                
+                                                <ul class="like-com">
+                                                    <li><!--如果当前当前用户为此文章点过赞,则为红心，再次点击为取消赞-->
+                                                                
+                                                        <c:forEach items="${mylikelist}" var="mylike">
+
+                                                            <c:if test="${mylike.aid==artc.aid}">
+                                                                <!--如果当前当前用户为此文章点过赞,则为红心，再次点击为取消赞-->
+                                                                <c:if test="${empty mylike.likestauts}">
+                                                                <a href="javascript:likeedartc('${artc.aid}')"> <i class="la la-heart"></i> ${artc.praise}人已赞</a>
+                                                                </c:if>
+                                                                <!--如果当前当前用户为此文章点过赞,则为红心，再次点击为取消赞-->
+                                                                <c:if test="${mylike.likestauts==0}">
+                                                                <a href="javascript:likeed('${artc.aid}')"> <i class="la la-heart"></i> ${artc.praise}人已赞</a>
+                                                                </c:if>
+                                                                <!--如果当前当前用户为此文章点过赞,则为红心，再次点击为取消赞-->
+                                                                <c:if test="${mylike.likestauts==1 }">
+                                                                    <a href="javascript:likeout('${artc.aid}')"> <i class="la la-heart" style="color: #c82333"></i> ${artc.praise}人已赞</a>
+                                                                </c:if>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <span></span>
                                                     </li>
+                                                    <li><a href="#" title="" class="com"><img src="images/com.png" alt=""> ${artc.comcount}条评论</a>
+                                                    </li>
+                                                </ul>
+                                                
+                                                <a><i class="la la-eye"></i> 热度：${artc.pageviews}</a>
+                                            </div>
+                                            <div class="comment-sec">
+                                                <ul>
+                                                    <c:forEach items="${artc.ctexts}" var="artcontext">
+                                                        <li>
+                                                            <div class="comment-list">
+                                                                <div class="bg-img">
+                                                                    <img src="images/resources/bg-img3.png" alt="">
+                                                                </div>
+                                                                <div class="comment">
+                                                                    <h3>${artcontext.uname}</h3>
+                                                                    <span><img src="images/clock.png"
+                                                                               alt="">${artcontext.commenttime}</span>
+                                                                    <p>${artcontext.text}</p>
+                                                                    <c:if test="${sessionScope.user.uid==artcontext.uid}"><a
+                                                                            href="javascript:deletecomment('${artcontext.cid}')"
+                                                                            title="">删除</a></c:if>
+                                                                </div>
+                                                            </div><!--comment-list end-->
+                                                        </li>
                                                     </c:forEach>
                                                 </ul>
                                             </div><!--comment-sec end-->
@@ -464,16 +497,19 @@
                                                 </div>
                                                 <div class="comment_box">
                                                     <form class="comment-tab kind">
-                                                        <input type="text" name="text" value="" placeholder="Post a comment">
-                                                        <a href="javascript:Postcomment(${artc.aid})"><button type="button" >评论</button></a>
+                                                        <input type="text" name="text" value=""
+                                                               placeholder="Post a comment">
+                                                        <a href="javascript:Postcomment('${artc.aid}')">
+                                                            <button type="button">评论</button>
+                                                        </a>
                                                     </form>
-                                                    
+
                                                 </div>
                                             </div><!--post-comment end-->
-                                    </div>
-                                </c:forEach>
+                                        </div>
+                                
+                                    </c:forEach>
 
-                                    
                                     <div class="process-comm">
                                         <a href="#" title=""><img src="images/process-icon.png" alt=""></a>
                                     </div><!--process-comm end-->
@@ -499,14 +535,16 @@
                                     <div class="jobs-list">
                                         <div class="job-info">
                                             <c:forEach items="${articleshost}" var="ahost">
-                                            <div class="job-details" style=" margin-bottom: 15px;">
-                                                <a href=""><h3 style="width: 180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">${ahost.title}</h3></a>
-                                                <p style="width: 180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">${ahost.context}</p>
-                                            </div>
-                                            
+                                                <div class="job-details" style=" margin-bottom: 15px;">
+                                                    <a href=""><h3
+                                                            style="width: 180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">${ahost.title}</h3>
+                                                    </a>
+                                                    <p style="width: 180px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;">${ahost.context}</p>
+                                                </div>
+
                                             </c:forEach>
                                         </div><!--articlehost-info end-->
-                                        
+
                                     </div><!--jobs-list end-->
                                 </div><!--widget-jobs end-->
                                 <div class="widget widget-jobs">
@@ -617,33 +655,35 @@
             <h3>新动态</h3>
             <div class="post-project-fields">
                 <form id="article-tab">
-                    <div class="row"> 
-                    	<input type="text" hidden="hidden" name="uid" value="${sessionScope.user.uid}">
+                    <div class="row">
+                        <input type="text" hidden="hidden" name="uid" value="${sessionScope.user.uid}">
                         <div class="col-lg-12">
                             <input type="text" name="title" placeholder="标题">
                         </div>
                         <div class="col-lg-12">
                             <div class="inp-field">
-                                <select class="selectpicker show-tick form-control type_kind"  name="tid">
-                                   
+                                <select class="selectpicker show-tick form-control type_kind" name="tid">
+
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="inp-field">
-                                <select class="selectpicker show-tick form-control site_kind"  name="sid">
-                                 
+                                <select class="selectpicker show-tick form-control site_kind" name="sid">
+
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-12">
                             <textarea name="context" placeholder="请输入您的内容"></textarea>
                         </div>
                         <div class="col-lg-12">
                             <ul>
                                 <li>
-                                    <a href="javascript:submit_article()"><button class="active" type="button" value="发布">发布</button></a>
+                                    <a href="javascript:submit_article()">
+                                        <button class="active" type="button" value="发布">发布</button>
+                                    </a>
                                 </li>
                                 <li><a href="#" title="">Cancel</a></li>
                             </ul>
@@ -865,10 +905,8 @@
 </div><!--theme-layout end-->
 
 <script type="text/javascript" src="js/popper.js"></script>
-
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
 <script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
 <script type="text/javascript" src="lib/slick/slick.min.js"></script>
 <script type="text/javascript" src="js/scrollbar.js"></script>

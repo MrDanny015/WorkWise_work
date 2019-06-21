@@ -20,6 +20,7 @@ function datestart(){
             showMeridian: 1
    });
 }
+
 //用户注册
 function registered_user(){
 
@@ -59,8 +60,3 @@ function Login_submission(){
             }
     }, "json")
 }
-
-
-
-
-
